@@ -3,6 +3,7 @@ const Koa = require('koa');
 var Router = require('koa-router');
 const cors = require('@koa/cors');
 const koaBody = require('koa-body');
+var json = require('koa-json');
 
 // 创建一个Koa对象表示web app本身:
 const app = new Koa();
@@ -38,6 +39,7 @@ router.post('/loginapi', async(ctx) => {   // post 请求
 );
 app.use(koaBody());
 app.use(cors());
+app.use(json({ pretty: false, param: 'pretty' }));
 app
     .use(router.routes())
     .use(router.allowedMethods());
